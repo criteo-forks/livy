@@ -335,6 +335,11 @@ object InteractiveSession extends Logging {
       mergeHiveSiteAndHiveDeps(sparkMajorVersion)
     }
 
+    Option(livyConf.get(RSCConf.Entry.RPC_SERVER_ADDRESS)) match {
+      case Some(addr) => builderProperties.put(RSCConf.Entry.RPC_SERVER_ADDRESS.key(), addr)
+      case None =>
+    }
+
     builderProperties
   }
 }
